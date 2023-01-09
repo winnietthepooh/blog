@@ -1,6 +1,5 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
-import PostLists from "../components/PostLists.astro";
 
 const githubUsername = "winnietthepooh";
 const twitterUsername = "Caden32Com";
@@ -8,135 +7,126 @@ const youtubeUrl = "https://www.youtube.com/channel/UCIwrI7e64rEkbiDSalxzqIQ";
 
 let allPosts = await Astro.glob("../data/*.md");
 allPosts = allPosts.sort((a, b) => {
-	new Date(b.frontmatter.date).valueOf() -
-		new Date(a.frontmatter.data).valueOf();
+	return (
+		new Date(b.frontmatter.date).valueOf() -
+		new Date(a.frontmatter.data).valueOf()
+	);
 });
 
 const recentPosts = allPosts.slice(0, 2);
 ---
 
 <MainLayout title="Caden's Blog">
-	<main
-		class="text-center smd:grid grid-cols-2 pb-4 gap-2 overflow-auto hidden dark:bg-black dark:text-white h-[110%]"
-	>
-		<div class="pt-4 text-6xl">
-			<PostLists posts={recentPosts} />
-		</div>
-
-		<div
-			class="bg-pickled-bluewood-500 rounded-3xl pl-8 pr-4 text-white justify-center h-[85vh] w-[85%]"
+	<main class="bg-gradient-to-t from-gray-300 to-gray-50 h-screen">
+		<h1
+			class="p-12 flex justify-center text-4xl underline decoration-gray-300 text-gray-600"
 		>
-			<div class="grid place-items-center pt-4">
-				<img
-					src="assets/memoji.png"
-					alt="Caden's avatar"
-					class="p-4 rounded-[300px] bg-black"
-				/>
-			</div>
-			<div
-				class="p-10 grid grid-cols-3 place-items-center justify-between"
-			>
-				<a
-					rel="nofollow noopener"
-					href={`${youtubeUrl}`}
-					target="_blank"
-					title={`${twitterUsername} on Youtube`}
-				>
+			Top Projects
+		</h1>
+		<div id="default-carousel" class="relative" data-carousel="static">
+			<!-- Carousel wrapper -->
+			<div class="relative h-56 overflow-hidden rounded-lg md:h-96">
+				<!-- Item 1 -->
+				<div class="hidden duration-700 ease-in-out" data-carousel-item>
+					<span
+						class="absolute text-2xl font-semibold text-white -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 sm:text-3xl dark:text-gray-800"
+						>First Slide</span
+					>
 					<img
-						src="assets/youtube-social.svg"
-						alt="Caden's youtube channel"
-						class="p-4 object-scale-down md:h-40 md:w-40 sm:h-20 sm:w-20"
+						src="/docs/images/carousel/carousel-1.svg"
+						class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+						alt="..."
 					/>
-				</a>
-				<a
-					rel="nofollow noopener"
-					href={`https://twitter.com/${twitterUsername}`}
-					target="_blank"
-					title={`${twitterUsername} on Twitter`}
-				>
+				</div>
+				<!-- Item 2 -->
+				<div class="hidden duration-700 ease-in-out" data-carousel-item>
 					<img
-						src="assets/twitter-blue-circle.svg"
-						alt="Caden's avatar"
-						class="p-4 object-scale-down md:h-40 md:w-40 sm:h-20 sm:w-20"
+						src="/docs/images/carousel/carousel-2.svg"
+						class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+						alt="..."
 					/>
-				</a>
-
-				<a
-					rel="nofollow noopener"
-					href={`https://github.com/${githubUsername}`}
-					target="_blank"
-					title={`${githubUsername} on Github`}
-				>
+				</div>
+				<!-- Item 3 -->
+				<div class="hidden duration-700 ease-in-out" data-carousel-item>
 					<img
-						src="assets/github-social.svg"
-						alt="Caden's avatar"
-						class="p-4 object-scale-down md:h-40 md:w-40 sm:h-2 sm:w-2"
-					/>
-				</a>
-			</div>
-		</div>
-	</main>
-	<main
-		class="h-screen grid grid-rows-2 gap-y-[28rem] text-center mb-[30rem] smd:hidden dark:bg-black dark:text-white"
-	>
-		<div
-			class="bg-pickled-bluewood-500 rounded-3xl pl-8 pr-8 text-white justify-center h-max w-[100%] mb-4"
-		>
-			<div
-				class="place-items-center justify-center pt-4 rounded-[100%] bg-black"
-			>
-				<div class="flex-1 h-min place-items-center justify-center">
-					<img
-						src="assets/memoji.png"
-						alt="Caden's avatar"
-						class="pl-8"
+						src="/docs/images/carousel/carousel-3.svg"
+						class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+						alt="..."
 					/>
 				</div>
 			</div>
+			<!-- Slider indicators -->
 			<div
-				class="p-10 grid grid-cols-3 place-items-center justify-between"
+				class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2"
 			>
-				<a
-					rel="nofollow noopener"
-					href={`${youtubeUrl}`}
-					target="_blank"
-					title={`${twitterUsername} on Youtube`}
-				>
-					<img
-						src="assets/youtube-social.svg"
-						alt="Caden's youtube channel"
-						class="p-2 object-scale-down md:h-40 md:w-40 sm:h-auto sm:w-auto"
-					/>
-				</a>
-				<a
-					rel="nofollow noopener"
-					href={`https://twitter.com/${twitterUsername}`}
-					target="_blank"
-					title={`${twitterUsername} on Twitter`}
-				>
-					<img
-						src="assets/twitter-blue-circle.svg"
-						alt="Caden's avatar"
-						class="p-2 object-scale-down md:h-40 md:w-40 sm:h-auto sm:w-auto"
-					/>
-				</a>
-
-				<a
-					rel="nofollow noopener"
-					href={`https://github.com/${githubUsername}`}
-					target="_blank"
-					title={`${githubUsername} on Github`}
-				>
-					<img
-						src="assets/github-social.svg"
-						alt="Caden's avatar"
-						class="p-2 object-scale-down md:h-40 md:w-40 sm:h-auto sm:w-auto"
-					/>
-				</a>
+				<button
+					type="button"
+					class="w-3 h-3 rounded-full"
+					aria-current="false"
+					aria-label="Slide 1"
+					data-carousel-slide-to="0"></button>
+				<button
+					type="button"
+					class="w-3 h-3 rounded-full"
+					aria-current="false"
+					aria-label="Slide 2"
+					data-carousel-slide-to="1"></button>
+				<button
+					type="button"
+					class="w-3 h-3 rounded-full"
+					aria-current="false"
+					aria-label="Slide 3"
+					data-carousel-slide-to="2"></button>
 			</div>
-		</div>
-		<div class="pt-4 text-6xl">
-			<PostLists posts={recentPosts} />
+			<!-- Slider controls -->
+			<button
+				type="button"
+				class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+				data-carousel-prev
+			>
+				<span
+					class="inline-flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none"
+				>
+					<svg
+						aria-hidden="true"
+						class="w-5 h-5 text-white sm:w-6 sm:h-6 dark:text-gray-800"
+						fill="none"
+						stroke="currentColor"
+						viewBox="0 0 24 24"
+						xmlns="http://www.w3.org/2000/svg"
+						><path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M15 19l-7-7 7-7"></path>
+					</svg>
+					<span class="sr-only">Previous</span>
+				</span>
+			</button>
+			<button
+				type="button"
+				class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+				data-carousel-next
+			>
+				<span
+					class="inline-flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none"
+				>
+					<svg
+						aria-hidden="true"
+						class="w-5 h-5 text-white sm:w-6 sm:h-6 dark:text-gray-800"
+						fill="none"
+						stroke="currentColor"
+						viewBox="0 0 24 24"
+						xmlns="http://www.w3.org/2000/svg"
+						><path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M9 5l7 7-7 7"></path>
+					</svg>
+					<span class="sr-only">Next</span>
+				</span>
+			</button>
 		</div>
 	</main>
 </MainLayout>
